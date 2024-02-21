@@ -1,5 +1,33 @@
 /* Basic CSS for styling */
 /* Add your own styles to customize further */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: magenta;
+    margin-top: 30px;
+}
+
+p {
+    line-height: 1.6;
+}
+
 .project {
     border: 1px solid #ccc;
     padding: 10px;
@@ -15,12 +43,22 @@
 /* Add styles for the timeline */
 .timeline-event {
     margin-bottom: 20px;
+    border-left: 2px solid magenta;
+    padding-left: 20px;
 }
 
 .timeline-date {
     font-weight: bold;
+    color: magenta;
 }
 
-.timeline-content {
-    margin-left: 20px;
+.timeline-content h3 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    color: #777;
+    margin-top: 0;
 }
