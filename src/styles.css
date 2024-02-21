@@ -1,0 +1,26 @@
+/* Basic CSS for styling */
+/* Add your own styles to customize further */
+.project {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    transition: transform 0.3s;
+}
+
+.project:hover {
+    transform: scale(1.05);
+}
+
+/* Add styles for the timeline */
+.timeline-event {
+    margin-bottom: 20px;
+}
+
+.timeline-date {
+    font-weight: bold;
+}
+
+.timeline-content {
+    margin-left: 20px;
+}
