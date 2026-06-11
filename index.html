@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniil Filienko - AI Privacy Researcher</title>
+    <meta name="description" content="Daniil Filienko — PhD student at the University of Washington researching privacy-preserving machine learning for healthcare applications. Publications, experience, and projects.">
+    <meta name="author" content="Daniil Filienko">
+    <meta property="og:title" content="Daniil Filienko - AI Privacy Researcher">
+    <meta property="og:description" content="PhD student researching privacy-preserving machine learning for healthcare applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/profile.jpg">
+    <meta name="theme-color" content="#4a2c8f">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234a2c8f'/><text x='50' y='68' font-size='48' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>DF</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -18,41 +26,63 @@
             --light-gray: #e9ecef;
             --border-radius: 8px;
             --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --box-shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --nav-height: 64px;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            *, *::before, *::after {
+                transition: none !important;
+            }
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--light-bg);
         }
-        
+
+        a:focus-visible {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         /* Header Styles */
         header {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             color: var(--white);
-            padding: 2rem 0;
+            padding: 2.5rem 0;
         }
-        
+
         .profile-container {
             display: flex;
             align-items: center;
             gap: 2rem;
         }
-        
+
         .profile-image {
             width: 180px;
             height: 180px;
@@ -61,36 +91,38 @@
             object-fit: cover;
             border: 4px solid var(--white);
             box-shadow: var(--box-shadow);
+            flex-shrink: 0;
         }
-        
+
         .profile-info h1 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
-        
+
         .profile-info p {
             font-size: 1.2rem;
             max-width: 600px;
             opacity: 0.9;
         }
-        
+
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .social-links a {
             color: var(--white);
             font-size: 1.5rem;
             transition: var(--transition);
         }
-        
+
         .social-links a:hover {
             color: var(--accent-color);
+            transform: translateY(-2px);
         }
-        
+
         /* Navigation */
         nav {
             background-color: var(--white);
@@ -99,36 +131,51 @@
             top: 0;
             z-index: 100;
         }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
         .nav-links {
             display: flex;
+            flex-wrap: wrap;
             list-style: none;
         }
-        
+
         .nav-links li a {
             display: block;
             padding: 1.2rem 1rem;
             color: var(--text-color);
             text-decoration: none;
             font-weight: 500;
+            border-bottom: 3px solid transparent;
             transition: var(--transition);
         }
-        
-        .nav-links li a:hover {
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
             color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
         }
-        
+
         /* Main Content Sections */
         section {
             padding: 4rem 0;
         }
-        
+
+        .alt-bg {
+            background-color: var(--light-gray);
+        }
+
         .section-title {
             font-size: 2rem;
             font-weight: 700;
@@ -137,7 +184,7 @@
             position: relative;
             padding-bottom: 0.5rem;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -147,50 +194,56 @@
             height: 3px;
             background-color: var(--accent-color);
         }
-        
+
         /* Education Section */
         .education-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
+
         .education-card {
             background-color: var(--white);
             padding: 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
+            transition: var(--transition);
         }
-        
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+
         .degree {
             font-size: 1.2rem;
             font-weight: 600;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
-        
+
         .institution {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
-        
+
         .years {
             font-size: 0.9rem;
             color: var(--gray);
             margin-bottom: 0.5rem;
         }
-        
+
         .gpa {
             font-size: 0.9rem;
         }
-        
+
         /* Awards Section */
         .awards-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
         }
-        
+
         .award-item {
             background-color: var(--white);
             padding: 1rem;
@@ -198,22 +251,22 @@
             box-shadow: var(--box-shadow);
             transition: var(--transition);
         }
-        
+
         .award-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow-hover);
         }
-        
+
         .award-title {
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-        
+
         .award-year {
             color: var(--accent-color);
             font-weight: 500;
         }
-        
+
         /* Publications Section */
         .publication-item {
             background-color: var(--white);
@@ -221,23 +274,29 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             margin-bottom: 1.5rem;
+            transition: var(--transition);
         }
-        
+
+        .publication-item:hover {
+            box-shadow: var(--box-shadow-hover);
+        }
+
         .publication-title {
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-        
+
         .publication-authors {
             font-style: italic;
             margin-bottom: 0.5rem;
         }
-        
+
         .publication-venue {
             margin-bottom: 0.5rem;
+            color: var(--gray);
         }
-        
+
         .publication-link {
             display: inline-block;
             color: var(--secondary-color);
@@ -245,18 +304,18 @@
             font-weight: 500;
             margin-top: 0.5rem;
         }
-        
+
         .publication-link:hover {
             text-decoration: underline;
         }
-        
+
         /* Experience Section */
         .timeline {
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .timeline::after {
             content: '';
             position: absolute;
@@ -267,14 +326,14 @@
             left: 50%;
             margin-left: -2px;
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
             background-color: inherit;
             width: 50%;
         }
-        
+
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -287,19 +346,19 @@
             border-radius: 50%;
             z-index: 1;
         }
-        
+
         .left {
             left: 0;
         }
-        
+
         .right {
             left: 50%;
         }
-        
+
         .right::after {
             left: -10px;
         }
-        
+
         .timeline-content {
             padding: 20px 30px;
             background-color: var(--white);
@@ -307,44 +366,44 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
         }
-        
+
         .date {
             font-size: 0.9rem;
             color: var(--accent-color);
             font-weight: 500;
         }
-        
+
         .role {
             font-size: 1.2rem;
             font-weight: 600;
             margin: 0.5rem 0;
         }
-        
+
         .company {
             font-size: 1rem;
             margin-bottom: 0.5rem;
             font-style: italic;
         }
-        
+
         .description {
             margin-top: 1rem;
         }
-        
+
         .description ul {
             padding-left: 1.5rem;
         }
-        
+
         .description li {
             margin-bottom: 0.5rem;
         }
-        
+
         /* Projects & Leadership */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-        
+
         .card {
             background-color: var(--white);
             border-radius: var(--border-radius);
@@ -352,31 +411,35 @@
             overflow: hidden;
             transition: var(--transition);
         }
-        
+
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow-hover);
         }
-        
+
         .card-header {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             padding: 1rem;
             color: var(--white);
         }
-        
+
         .card-title {
             font-size: 1.2rem;
             font-weight: 600;
         }
-        
+
         .card-body {
             padding: 1.5rem;
         }
-        
+
         .card-text {
             margin-bottom: 1rem;
         }
-        
+
+        .card-text ul {
+            padding-left: 1.5rem;
+        }
+
         /* Footer */
         footer {
             background-color: var(--dark-bg);
@@ -384,62 +447,92 @@
             padding: 2rem 0;
             text-align: center;
         }
-        
+
         .footer-content {
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .footer-links {
             margin: 1rem 0;
         }
-        
+
         .footer-links a {
             color: var(--white);
             margin: 0 0.5rem;
             text-decoration: none;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover {
             color: var(--accent-color);
         }
-        
+
+        footer .social-links {
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
         .copyright {
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             .profile-container {
                 flex-direction: column;
                 text-align: center;
             }
-            
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+
             .social-links {
                 justify-content: center;
             }
-            
+
+            .nav-container {
+                justify-content: center;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .nav-links li a {
+                padding: 0.8rem 0.7rem;
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                text-align: center;
+            }
+
             .section-title::after {
                 left: 50%;
                 transform: translateX(-50%);
             }
-            
+
             .timeline::after {
                 left: 31px;
             }
-            
+
             .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
             }
-            
+
             .timeline-item::after {
                 left: 21px;
             }
-            
+
             .right {
                 left: 0%;
             }
@@ -450,33 +543,34 @@
     <!-- Header Section -->
     <header>
         <div class="container profile-container">
-            <img src="assets/profile.jpg" alt="Daniil Filienko" class="profile-image">
+            <img src="assets/profile.jpg" alt="Portrait of Daniil Filienko" class="profile-image" width="180" height="180">
             <div class="profile-info">
                 <h1>Daniil Filienko</h1>
                 <p>PhD CSS Student | Specializing in Privacy-Preserving Machine Learning for Healthcare Applications</p>
                 <div class="social-links">
-                    <a href="https://github.com/Filienko"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/daniil-filienko-800160215"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Filienko" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/daniil-filienko-800160215" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="mailto:daniilf@uw.edu" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
     </header>
-    
+
     <!-- Navigation -->
-    <nav>
+    <nav aria-label="Main navigation">
         <div class="container nav-container">
             <div class="logo">DF</div>
             <ul class="nav-links">
                 <li><a href="#education">Education</a></li>
-                <li><a href="#publications">All Publications</a></li>
-                <li><a href="#experience">Experience</a></li>
                 <li><a href="#awards">Awards</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#leadership">Leadership</a></li>
                 <li><a href="#projects">Projects</a></li>
             </ul>
         </div>
     </nav>
-    
+
     <!-- Main Content -->
     <main>
         <!-- Education Section -->
@@ -504,11 +598,11 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Awards Section -->
-        <section id="awards" style="background-color: var(--light-gray);">
+        <section id="awards" class="alt-bg">
             <div class="container">
-                <h2 class="section-title">Awards & Honors</h2>
+                <h2 class="section-title">Awards &amp; Honors</h2>
                 <div class="awards-list">
                     <div class="award-item">
                         <div class="award-title">UW SET Graduate Merit Scholarship</div>
@@ -531,7 +625,7 @@
                         <div class="award-year">2024</div>
                     </div>
                     <div class="award-item">
-                        <div class="award-title">UW SET Graduate Student Equity & Excellence (GSEE) Award</div>
+                        <div class="award-title">UW SET Graduate Student Equity &amp; Excellence (GSEE) Award</div>
                         <div class="award-year">2024</div>
                     </div>
                     <div class="award-item">
@@ -565,50 +659,71 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Publications Section -->
         <section id="publications">
             <div class="container">
-                <h2 class="section-title">All Publications</h2>
+                <h2 class="section-title">Publications</h2>
                 <div class="publication-item">
                     <div class="publication-title">Influence of Gender-Specific Data Imbalance on scGPT Fine-Tuning for Single-Cell Genomics</div>
                     <div class="publication-authors">M.A.U. Al Amin, <strong>D. Filienko</strong>, H. Qin</div>
                     <div class="publication-venue">AAAI 2025 Fall Symposium Series, 2025</div>
-                    <a href="#" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
                 </div>
                 <div class="publication-item">
                     <div class="publication-title">Transforming Tuberculosis Care: Optimizing Large Language Models for Enhanced Clinician-Patient Communication</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, M. Nizar, J. Roberti, D. Galdamez, H. Jakher, S. Iribarren, W. Yuwen, M. De Cock</div>
                     <div class="publication-venue">Workshop on Large Language Models and Generative AI for Health at 2025 AAAI Conference on Artificial Intelligence</div>
-                    <a href="https://arxiv.org/abs/2502.21236" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                    <a href="https://arxiv.org/abs/2502.21236" class="publication-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> View Paper</a>
                 </div>
                 <div class="publication-item">
                     <div class="publication-title">AI for Global Health: Leveraging Large Language Models for Tuberculosis Treatment Adherence</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, M. Nizar, J. Roberti, D. Galdamez, H. Jakher, S. Iribarren, W. Yuwen, M. De Cock</div>
                     <div class="publication-venue">Workshop on Considering Cultural and Linguistic Diversity AI Applications, Association for Information Science and Technology</div>
-                    <a href="#" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
                 </div>
                 <div class="publication-item">
                     <div class="publication-title">Toward Large Language Models as a Therapeutic Tool: Comparing Prompting Techniques to Improve GPT-Delivered Problem-Solving Therapy</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, Y. Wang, C. El Jazmi, S. Xie, T. Cohen, M. De Cock, W. Yuwen</div>
                     <div class="publication-venue">American Medical Informatics Association (AMIA) Annual Symposium, 2024</div>
-                    <a href="https://arxiv.org/pdf/2409.00112" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                    <a href="https://arxiv.org/pdf/2409.00112" class="publication-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> View Paper</a>
                 </div>
-
                 <div class="publication-item">
                     <div class="publication-title">Predicting Time to Pushback of Flights in U.S. Airports</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, Y. Lin, K. Robison, T. Tomlin, M. De Cock</div>
                     <div class="publication-venue">Undergraduate Consortium at 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD), 2023</div>
-                    <a href="https://kdd.org/kdd2023/wp-content/uploads/2023/08/filienko2023predicting.pdf" class="publication-link" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                    <a href="https://kdd.org/kdd2023/wp-content/uploads/2023/08/filienko2023predicting.pdf" class="publication-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> View Paper</a>
                 </div>
             </div>
         </section>
-        
+
         <!-- Experience Section -->
-        <section id="experience" style="background-color: var(--light-gray);">
+        <section id="experience" class="alt-bg">
             <div class="container">
                 <h2 class="section-title">Professional Experience</h2>
                 <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="date">Starting 7/2026</div>
+                            <div class="role">Applied Scientist Intern</div>
+                            <div class="company">Zillow</div>
+                            <div class="description">
+                                <ul>
+                                    <li>Returning to the applied science team to continue work on agentic AI systems for real estate technology.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="date">5/2026 – 7/2026</div>
+                            <div class="role">Applied Scientist Intern</div>
+                            <div class="company">Microsoft, MSAI Team</div>
+                            <div class="description">
+                                <ul>
+                                    <li>Working on self-improving agentic systems and their evaluation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="timeline-item left">
                         <div class="timeline-content">
                             <div class="date">9/2025 – 12/2025</div>
@@ -623,7 +738,7 @@
                     </div>
                     <div class="timeline-item right">
                         <div class="timeline-content">
-                            <div class="date">6/2025 – 09/2025</div>
+                            <div class="date">6/2025 – 9/2025</div>
                             <div class="role">Applied Scientist Intern</div>
                             <div class="company">Zillow</div>
                             <div class="description">
@@ -696,7 +811,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Leadership Section -->
         <section id="leadership">
             <div class="container">
@@ -720,9 +835,9 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Projects Section -->
-        <section id="projects" style="background-color: var(--light-gray);">
+        <section id="projects" class="alt-bg">
             <div class="container">
                 <h2 class="section-title">Research Projects</h2>
                 <div class="card-grid">
@@ -742,7 +857,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Assisted in developing full AWS architecture for a chatbot that provides mental health support with clinically proven methods. Led the LLM team responsible for the development of robust and effective chatbot
+                                Assisted in developing full AWS architecture for a chatbot that provides mental health support with clinically proven methods. Led the LLM team responsible for the development of a robust and effective chatbot.
                             </div>
                         </div>
                     </div>
@@ -752,7 +867,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Researching attacks on Diffusion Models to understand and improve privacy vulnerabilities for MIDST 2025 competition
+                                Researching attacks on Diffusion Models to understand and improve privacy vulnerabilities for the MIDST 2025 competition.
                             </div>
                         </div>
                     </div>
@@ -762,7 +877,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Implementing federated learning algorithms to predict flight pushback times for NASA's Back to the Future 2023 competition.
+                                Implementing federated learning algorithms to predict flight pushback times for NASA's Pushback to the Future 2023 competition.
                             </div>
                         </div>
                     </div>
@@ -770,7 +885,7 @@
             </div>
         </section>
     </main>
-    
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -782,29 +897,37 @@
                     <a href="#awards">Awards</a>
                 </div>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/Filienko" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/daniil-filienko-800160215" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="mailto:daniilf@uw.edu" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
                 <div class="copyright">
-                    &copy; 2025 Daniil Filienko. All rights reserved.
+                    &copy; 2026 Daniil Filienko. All rights reserved.
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Highlight the nav link for the section currently in view
+        (function () {
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            const sections = Array.from(navLinks)
+                .map(link => document.querySelector(link.getAttribute('href')))
+                .filter(Boolean);
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+                        });
+                    }
                 });
-            });
-        });
+            }, { rootMargin: '-40% 0px -55% 0px' });
+
+            sections.forEach(section => observer.observe(section));
+        })();
     </script>
 </body>
 </html>
