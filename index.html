@@ -7,28 +7,45 @@
     <meta name="description" content="Daniil Filienko — PhD student at the University of Washington researching privacy-preserving machine learning for healthcare applications. Publications, experience, and projects.">
     <meta name="author" content="Daniil Filienko">
     <meta property="og:title" content="Daniil Filienko - AI Privacy Researcher">
-    <meta property="og:description" content="PhD student researching privacy-preserving machine learning for healthcare applications.">
+    <meta property="og:description" content="PhD student researching privacy-preserving machine learning, LLMs, and agentic AI systems.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="assets/profile.jpg">
-    <meta name="theme-color" content="#4a2c8f">
+    <meta name="theme-color" content="#1c1240">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234a2c8f'/><text x='50' y='68' font-size='48' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>DF</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4a2c8f;
-            --secondary-color: #8c52ff;
-            --accent-color: #ff3e83;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --dark-bg: #212529;
-            --white: #ffffff;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --box-shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-            --nav-height: 64px;
+            /* Color system — single violet family + one warm accent */
+            --ink-950: #14102b;
+            --ink-900: #1c1240;
+            --ink-800: #2a1d5c;
+            --primary-700: #4a2c8f;
+            --primary-600: #5b3aa8;
+            --primary-500: #7a4fd6;
+            --primary-400: #8c52ff;
+            --primary-100: #ece5fb;
+            --primary-50: #f5f1fd;
+            --accent-500: #ff3e83;
+            --accent-100: #ffe3ee;
+
+            --text: #241f3d;
+            --text-muted: #645d80;
+            --surface: #ffffff;
+            --surface-alt: #f7f5fc;
+            --border: #e6e1f2;
+
+            --radius: 14px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 1px 3px rgba(28, 18, 64, 0.07), 0 4px 14px rgba(28, 18, 64, 0.05);
+            --shadow-md: 0 8px 28px rgba(28, 18, 64, 0.13);
+            --transition: all 0.25s ease;
+            --nav-h: 64px;
+
+            --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            --font-display: 'Sora', 'Segoe UI', system-ui, sans-serif;
         }
 
         * {
@@ -39,110 +56,229 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: var(--nav-height);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
-            }
-            *, *::before, *::after {
-                transition: none !important;
-            }
+            scroll-padding-top: calc(var(--nav-h) + 12px);
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--light-bg);
+            font-family: var(--font-body);
+            line-height: 1.65;
+            color: var(--text);
+            background-color: var(--surface-alt);
+            -webkit-font-smoothing: antialiased;
         }
 
-        a:focus-visible {
-            outline: 3px solid var(--accent-color);
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--accent-500);
             outline-offset: 2px;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header Styles */
-        header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: var(--white);
-            padding: 2.5rem 0;
+        /* ===== Hero ===== */
+        .hero {
+            position: relative;
+            color: #fff;
+            padding: 5rem 0 5.5rem;
+            background:
+                radial-gradient(900px 420px at 85% -10%, rgba(140, 82, 255, 0.45), transparent 60%),
+                radial-gradient(700px 380px at -10% 110%, rgba(255, 62, 131, 0.22), transparent 55%),
+                linear-gradient(135deg, var(--ink-950) 0%, var(--ink-900) 45%, var(--primary-700) 100%);
+            overflow: hidden;
         }
 
-        .profile-container {
+        .hero::after {
+            /* faint dot grid for texture */
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 26px 26px;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-layout {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 3.5rem;
+        }
+
+        .profile-ring {
+            flex-shrink: 0;
+            padding: 5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-400), var(--accent-500));
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
         }
 
         .profile-image {
-            width: 180px;
-            height: 180px;
+            display: block;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             object-position: center 30%;
             object-fit: cover;
-            border: 4px solid var(--white);
-            box-shadow: var(--box-shadow);
-            flex-shrink: 0;
+            border: 4px solid var(--ink-900);
         }
 
-        .profile-info h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #cdbcff;
+            background: rgba(140, 82, 255, 0.16);
+            border: 1px solid rgba(140, 82, 255, 0.45);
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            margin-bottom: 1.1rem;
         }
 
-        .profile-info p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            opacity: 0.9;
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
         }
 
-        .social-links {
+        .hero-tagline {
+            font-size: 1.15rem;
+            max-width: 640px;
+            color: rgba(255, 255, 255, 0.86);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tagline strong {
+            color: #fff;
+        }
+
+        .interest-chips {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
         }
 
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
+        .chip {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: #e9e1ff;
+            background: rgba(255, 255, 255, 0.09);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 999px;
             transition: var(--transition);
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-2px);
+        .btn-accent {
+            background: var(--accent-500);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(255, 62, 131, 0.35);
         }
 
-        /* Navigation */
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 62, 131, 0.45);
+        }
+
+        .btn-ghost {
+            color: #fff;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 3.25rem;
+            padding-top: 1.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #cdbcff, #ff9cc2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.04em;
+        }
+
+        /* ===== Navigation ===== */
         nav {
-            background-color: var(--white);
-            box-shadow: var(--box-shadow);
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            min-height: var(--nav-h);
         }
 
         .logo {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            letter-spacing: 1px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--primary-700);
+            letter-spacing: 0.02em;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-500);
         }
 
         .nav-links {
@@ -153,91 +289,127 @@
 
         .nav-links li a {
             display: block;
-            padding: 1.2rem 1rem;
-            color: var(--text-color);
+            padding: 1.15rem 0.9rem;
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             border-bottom: 3px solid transparent;
             transition: var(--transition);
         }
 
         .nav-links li a:hover,
         .nav-links li a.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
+            color: var(--primary-700);
+            border-bottom-color: var(--accent-500);
         }
 
-        /* Main Content Sections */
+        /* ===== Sections ===== */
         section {
-            padding: 4rem 0;
+            padding: 5rem 0;
         }
 
         .alt-bg {
-            background-color: var(--light-gray);
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-eyebrow {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent-500);
+            margin-bottom: 0.4rem;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-family: var(--font-display);
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
             font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+            color: var(--ink-900);
+            margin-bottom: 0.6rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-color);
+        .section-intro {
+            color: var(--text-muted);
+            max-width: 640px;
+            margin-bottom: 2.5rem;
         }
 
-        /* Education Section */
-        .education-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .education-card {
-            background-color: var(--white);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
+        /* ===== Cards (shared) ===== */
+        .surface-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
         }
 
-        .education-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--box-shadow-hover);
+        .surface-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-100);
+        }
+
+        /* ===== Education ===== */
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .education-card {
+            padding: 1.75rem;
+            border-top: 4px solid var(--primary-500);
+        }
+
+        .edu-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--primary-50);
+            color: var(--primary-600);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
         }
 
         .degree {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--ink-900);
+            margin-bottom: 0.4rem;
         }
 
         .institution {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.98rem;
+            margin-bottom: 0.35rem;
         }
 
         .years {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-bottom: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
         }
 
         .gpa {
-            font-size: 0.9rem;
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary-700);
+            background: var(--primary-50);
+            border: 1px solid var(--primary-100);
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
         }
 
-        /* Awards Section */
+        /* ===== Awards ===== */
         .awards-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -245,312 +417,501 @@
         }
 
         .award-item {
-            background-color: var(--white);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.9rem;
+            padding: 1.1rem 1.25rem;
         }
 
-        .award-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--box-shadow-hover);
+        .award-icon {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--accent-100);
+            color: var(--accent-500);
+            font-size: 0.95rem;
+            margin-top: 2px;
         }
 
         .award-title {
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            margin-bottom: 0.25rem;
         }
 
         .award-year {
-            color: var(--accent-color);
-            font-weight: 500;
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--primary-700);
+            background: var(--primary-50);
+            border: 1px solid var(--primary-100);
+            padding: 0.08rem 0.6rem;
+            border-radius: 999px;
         }
 
-        /* Publications Section */
+        /* ===== Publications ===== */
         .publication-item {
-            background-color: var(--white);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
+            position: relative;
+            padding: 1.6rem 1.75rem;
+            margin-bottom: 1.25rem;
+            border-left: 4px solid var(--primary-500);
         }
 
         .publication-item:hover {
-            box-shadow: var(--box-shadow-hover);
+            border-left-color: var(--accent-500);
+        }
+
+        .publication-venue-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--primary-700);
+            background: var(--primary-50);
+            border: 1px solid var(--primary-100);
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            margin-bottom: 0.7rem;
         }
 
         .publication-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--ink-900);
             margin-bottom: 0.5rem;
         }
 
         .publication-authors {
-            font-style: italic;
-            margin-bottom: 0.5rem;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+        }
+
+        .publication-authors strong {
+            color: var(--primary-700);
         }
 
         .publication-venue {
-            margin-bottom: 0.5rem;
-            color: var(--gray);
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
         }
 
         .publication-link {
-            display: inline-block;
-            color: var(--secondary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--primary-600);
             text-decoration: none;
-            font-weight: 500;
-            margin-top: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.4rem;
         }
 
         .publication-link:hover {
-            text-decoration: underline;
+            color: var(--accent-500);
         }
 
-        /* Experience Section */
+        /* ===== Experience timeline ===== */
         .timeline {
             position: relative;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
-            width: 4px;
-            background-color: var(--light-gray);
-            top: 0;
-            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-400), var(--accent-500));
+            border-radius: 3px;
+            top: 8px;
+            bottom: 8px;
             left: 50%;
-            margin-left: -2px;
+            margin-left: -1.5px;
         }
 
         .timeline-item {
-            padding: 10px 40px;
+            padding: 12px 44px;
             position: relative;
-            background-color: inherit;
             width: 50%;
         }
 
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--white);
-            border: 4px solid var(--accent-color);
-            top: 15px;
+            width: 18px;
+            height: 18px;
+            right: -9px;
+            background-color: var(--surface);
+            border: 4px solid var(--primary-500);
+            top: 26px;
             border-radius: 50%;
             z-index: 1;
+            box-shadow: 0 0 0 4px var(--surface-alt);
         }
 
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .right::after {
-            left: -10px;
-        }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .right::after { left: -9px; }
 
         .timeline-content {
-            padding: 20px 30px;
-            background-color: var(--white);
-            position: relative;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
+            padding: 1.5rem 1.75rem;
         }
 
         .date {
-            font-size: 0.9rem;
-            color: var(--accent-color);
-            font-weight: 500;
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--accent-500);
+            background: var(--accent-100);
+            padding: 0.2rem 0.75rem;
+            border-radius: 999px;
+            margin-bottom: 0.6rem;
+        }
+
+        .date.current {
+            color: #fff;
+            background: linear-gradient(90deg, var(--primary-500), var(--accent-500));
         }
 
         .role {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0.5rem 0;
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--ink-900);
+            margin-bottom: 0.2rem;
         }
 
         .company {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            font-style: italic;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--primary-600);
+            margin-bottom: 0.6rem;
         }
 
         .description {
-            margin-top: 1rem;
+            margin-top: 0.6rem;
+            font-size: 0.94rem;
+        }
+
+        .description p strong {
+            color: var(--ink-900);
         }
 
         .description ul {
-            padding-left: 1.5rem;
+            padding-left: 1.3rem;
+            margin: 0.4rem 0 0.8rem;
         }
 
         .description li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-muted);
         }
 
-        /* Projects & Leadership */
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+        }
+
+        .tag {
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--primary-700);
+            background: var(--primary-50);
+            border: 1px solid var(--primary-100);
+            padding: 0.18rem 0.65rem;
+            border-radius: 999px;
+        }
+
+        /* ===== Leadership & Projects ===== */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
             overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--box-shadow-hover);
+            display: flex;
+            flex-direction: column;
         }
 
         .card-header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            padding: 1rem;
-            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            background: linear-gradient(120deg, var(--ink-900), var(--primary-700));
+            padding: 1.1rem 1.4rem;
+            color: #fff;
+        }
+
+        .card-header i {
+            font-size: 1.15rem;
+            color: #cdbcff;
+            flex-shrink: 0;
         }
 
         .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-family: var(--font-display);
+            font-size: 1.02rem;
+            font-weight: 700;
+            line-height: 1.35;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .card-text {
+            font-size: 0.94rem;
+            color: var(--text-muted);
             margin-bottom: 1rem;
+            flex-grow: 1;
         }
 
         .card-text ul {
-            padding-left: 1.5rem;
+            padding-left: 1.3rem;
         }
 
-        /* Footer */
+        .card-text li {
+            margin-bottom: 0.4rem;
+        }
+
+        .card-body .company {
+            margin-bottom: 0.2rem;
+        }
+
+        .card-body .date {
+            margin-bottom: 0.8rem;
+        }
+
+        /* ===== Footer ===== */
         footer {
-            background-color: var(--dark-bg);
-            color: var(--white);
-            padding: 2rem 0;
+            background:
+                radial-gradient(700px 300px at 80% 0%, rgba(140, 82, 255, 0.25), transparent 60%),
+                linear-gradient(160deg, var(--ink-950), var(--ink-900));
+            color: #fff;
+            padding: 4rem 0 2.5rem;
             text-align: center;
         }
 
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
+        .footer-cta h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-cta p {
+            color: rgba(255, 255, 255, 0.72);
+            max-width: 520px;
+            margin: 0 auto 1.6rem;
         }
 
         .footer-links {
-            margin: 1rem 0;
+            margin: 2.5rem 0 1.25rem;
         }
 
         .footer-links a {
-            color: var(--white);
-            margin: 0 0.5rem;
+            color: rgba(255, 255, 255, 0.78);
+            margin: 0 0.7rem;
             text-decoration: none;
+            font-size: 0.92rem;
             transition: var(--transition);
         }
 
         .footer-links a:hover {
-            color: var(--accent-color);
+            color: var(--accent-500);
         }
 
-        footer .social-links {
+        .social-links {
+            display: flex;
             justify-content: center;
-            margin: 1rem 0;
+            gap: 1.1rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-500);
+            border-color: var(--accent-500);
+            transform: translateY(-3px);
         }
 
         .copyright {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .profile-container {
+        /* ===== Back to top ===== */
+        .back-to-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 90;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1rem;
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+        }
+
+        /* ===== Scroll reveal (JS adds .js to <html>) ===== */
+        html.js .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        html.js .reveal.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition: none !important; }
+            html.js .reveal { opacity: 1; transform: none; }
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 860px) {
+            .hero-layout {
                 flex-direction: column;
                 text-align: center;
+                gap: 2rem;
             }
 
-            .profile-info h1 {
-                font-size: 2rem;
-            }
-
-            .social-links {
+            .interest-chips,
+            .hero-actions {
                 justify-content: center;
             }
 
-            .nav-container {
+            .hero-stats {
                 justify-content: center;
+                gap: 1.8rem;
             }
+        }
 
-            .logo {
-                display: none;
-            }
+        @media (max-width: 768px) {
+            section { padding: 3.5rem 0; }
 
-            .nav-links {
-                justify-content: center;
-            }
-
+            .nav-container { justify-content: center; }
+            .logo { display: none; }
+            .nav-links { justify-content: center; }
             .nav-links li a {
-                padding: 0.8rem 0.7rem;
-                font-size: 0.95rem;
+                padding: 0.85rem 0.6rem;
+                font-size: 0.9rem;
             }
 
-            .section-title {
-                text-align: center;
-            }
-
-            .section-title::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-
-            .timeline::after {
-                left: 31px;
-            }
+            .timeline::after { left: 24px; }
 
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+                padding-left: 60px;
+                padding-right: 8px;
             }
 
-            .timeline-item::after {
-                left: 21px;
-            }
-
-            .right {
-                left: 0%;
-            }
+            .timeline-item::after { left: 16px; }
+            .right { left: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="container profile-container">
-            <img src="assets/profile.jpg" alt="Portrait of Daniil Filienko" class="profile-image" width="180" height="180">
-            <div class="profile-info">
-                <h1>Daniil Filienko</h1>
-                <p>PhD CSS Student | Specializing in Privacy-Preserving Machine Learning for Healthcare Applications</p>
-                <div class="social-links">
-                    <a href="https://github.com/Filienko" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/daniil-filienko-800160215" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                    <a href="mailto:daniilf@uw.edu" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-layout">
+                <div class="profile-ring">
+                    <img src="assets/profile.jpg" alt="Portrait of Daniil Filienko" class="profile-image" width="200" height="200">
+                </div>
+                <div class="hero-text">
+                    <span class="hero-eyebrow"><i class="fas fa-shield-halved" aria-hidden="true"></i> AI Privacy Researcher</span>
+                    <h1>Daniil Filienko</h1>
+                    <p class="hero-tagline">
+                        PhD student in Computer Science &amp; Systems at the <strong>University of Washington</strong>, building
+                        <strong>privacy-preserving machine learning</strong> for healthcare — from differentially private
+                        synthetic data to LLM-powered clinical tools and self-improving agentic systems.
+                    </p>
+                    <div class="interest-chips">
+                        <span class="chip">Privacy-Preserving ML</span>
+                        <span class="chip">Differential Privacy</span>
+                        <span class="chip">Large Language Models</span>
+                        <span class="chip">Agentic AI</span>
+                        <span class="chip">Healthcare AI</span>
+                        <span class="chip">Federated Learning</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a href="mailto:daniilf@uw.edu" class="btn btn-accent"><i class="fas fa-envelope" aria-hidden="true"></i> Get in Touch</a>
+                        <a href="https://github.com/Filienko" class="btn btn-ghost" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/daniil-filienko-800160215" class="btn btn-ghost" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Peer-Reviewed Publications</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Awards &amp; Honors</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Years in Research</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2028</div>
+                    <div class="stat-label">Expected PhD</div>
                 </div>
             </div>
         </div>
@@ -559,7 +920,7 @@
     <!-- Navigation -->
     <nav aria-label="Main navigation">
         <div class="container nav-container">
-            <div class="logo">DF</div>
+            <a href="#top" class="logo">D<span>F</span></a>
             <ul class="nav-links">
                 <li><a href="#education">Education</a></li>
                 <li><a href="#awards">Awards</a></li>
@@ -573,120 +934,174 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Education Section -->
+        <!-- Education -->
         <section id="education">
             <div class="container">
+                <div class="section-eyebrow">Background</div>
                 <h2 class="section-title">Education</h2>
+                <p class="section-intro">All three degrees at the University of Washington — moving from undergraduate research straight into a PhD focused on trustworthy machine learning.</p>
                 <div class="education-container">
-                    <div class="education-card">
+                    <div class="surface-card education-card reveal">
+                        <span class="edu-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></span>
                         <div class="degree">PhD in Computer Science and Systems</div>
                         <div class="institution">University of Washington, Tacoma</div>
-                        <div class="years">2023 - Expected 2028</div>
+                        <div class="years">2023 – Expected 2028</div>
+                        <span class="gpa">Privacy-Preserving ML for Healthcare</span>
                     </div>
-                    <div class="education-card">
-                        <div class="degree">Master of Science in Computer Science and Systems</div>
+                    <div class="surface-card education-card reveal">
+                        <span class="edu-icon"><i class="fas fa-user-graduate" aria-hidden="true"></i></span>
+                        <div class="degree">MS in Computer Science and Systems</div>
                         <div class="institution">University of Washington, Tacoma</div>
-                        <div class="years">2023 - 2025</div>
-                        <div class="gpa">GPA: 3.99</div>
+                        <div class="years">2023 – 2025</div>
+                        <span class="gpa">GPA 3.99</span>
                     </div>
-                    <div class="education-card">
-                        <div class="degree">Bachelor of Science in Computer Science and Systems</div>
+                    <div class="surface-card education-card reveal">
+                        <span class="edu-icon"><i class="fas fa-scroll" aria-hidden="true"></i></span>
+                        <div class="degree">BS in Computer Science and Systems</div>
                         <div class="institution">University of Washington, Tacoma</div>
-                        <div class="years">2021 - 2023</div>
-                        <div class="gpa">GPA: 3.97, <em>Magna Cum Laude</em></div>
+                        <div class="years">2021 – 2023</div>
+                        <span class="gpa">GPA 3.97 · Magna Cum Laude</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Awards Section -->
+        <!-- Awards -->
         <section id="awards" class="alt-bg">
             <div class="container">
+                <div class="section-eyebrow">Recognition</div>
                 <h2 class="section-title">Awards &amp; Honors</h2>
+                <p class="section-intro">Thirteen awards and fellowships spanning research, leadership, and national data science competition wins.</p>
                 <div class="awards-list">
-                    <div class="award-item">
-                        <div class="award-title">UW SET Graduate Merit Scholarship</div>
-                        <div class="award-year">2026</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-award" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Graduate Merit Scholarship</div>
+                            <span class="award-year">2026</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW Husky 100</div>
-                        <div class="award-year">2025</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-star" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW Husky 100</div>
+                            <span class="award-year">2025</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Outstanding Graduate Researcher Award</div>
-                        <div class="award-year">2025</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-microscope" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Outstanding Graduate Researcher Award</div>
+                            <span class="award-year">2025</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Student Leadership Award</div>
-                        <div class="award-year">2025</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-people-group" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Student Leadership Award</div>
+                            <span class="award-year">2025</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">NIH AIM-AHEAD Cohort 3 Research Fellowship</div>
-                        <div class="award-year">2024</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">NIH AIM-AHEAD Cohort 3 Research Fellowship</div>
+                            <span class="award-year">2024</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Graduate Student Equity &amp; Excellence (GSEE) Award</div>
-                        <div class="award-year">2024</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Graduate Student Equity &amp; Excellence (GSEE) Award</div>
+                            <span class="award-year">2024</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">NSF Graduate Research Fellowship Program Honorable Mention</div>
-                        <div class="award-year">2024</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-flask" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">NSF Graduate Research Fellowship Program Honorable Mention</div>
+                            <span class="award-year">2024</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Andrew and Julie Fry Innovation Award</div>
-                        <div class="award-year">2024</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-lightbulb" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Andrew and Julie Fry Innovation Award</div>
+                            <span class="award-year">2024</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Carwein-Andrews Distinguished Fellowship Award</div>
-                        <div class="award-year">2024</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-medal" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Carwein-Andrews Distinguished Fellowship Award</div>
+                            <span class="award-year">2024</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Graduate Merit Scholarship</div>
-                        <div class="award-year">2024</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-award" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Graduate Merit Scholarship</div>
+                            <span class="award-year">2024</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW SET Outstanding Undergraduate Researcher Award</div>
-                        <div class="award-year">2023</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-microscope" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW SET Outstanding Undergraduate Researcher Award</div>
+                            <span class="award-year">2023</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">UW President's Medal Candidate</div>
-                        <div class="award-year">2023</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-medal" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">UW President's Medal Candidate</div>
+                            <span class="award-year">2023</span>
+                        </div>
                     </div>
-                    <div class="award-item">
-                        <div class="award-title">NASA 'Pushback to the Future' Data Science Competition Winner</div>
-                        <div class="award-year">2023</div>
+                    <div class="surface-card award-item reveal">
+                        <span class="award-icon"><i class="fas fa-rocket" aria-hidden="true"></i></span>
+                        <div>
+                            <div class="award-title">NASA 'Pushback to the Future' Data Science Competition Winner</div>
+                            <span class="award-year">2023</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Publications Section -->
+        <!-- Publications -->
         <section id="publications">
             <div class="container">
+                <div class="section-eyebrow">Research Output</div>
                 <h2 class="section-title">Publications</h2>
-                <div class="publication-item">
+                <p class="section-intro">Peer-reviewed work at the intersection of large language models, privacy, and health informatics.</p>
+                <div class="surface-card publication-item reveal">
+                    <span class="publication-venue-badge">AAAI Fall Symposium</span>
                     <div class="publication-title">Influence of Gender-Specific Data Imbalance on scGPT Fine-Tuning for Single-Cell Genomics</div>
                     <div class="publication-authors">M.A.U. Al Amin, <strong>D. Filienko</strong>, H. Qin</div>
                     <div class="publication-venue">AAAI 2025 Fall Symposium Series, 2025</div>
                 </div>
-                <div class="publication-item">
+                <div class="surface-card publication-item reveal">
+                    <span class="publication-venue-badge">AAAI Workshop</span>
                     <div class="publication-title">Transforming Tuberculosis Care: Optimizing Large Language Models for Enhanced Clinician-Patient Communication</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, M. Nizar, J. Roberti, D. Galdamez, H. Jakher, S. Iribarren, W. Yuwen, M. De Cock</div>
                     <div class="publication-venue">Workshop on Large Language Models and Generative AI for Health at 2025 AAAI Conference on Artificial Intelligence</div>
                     <a href="https://arxiv.org/abs/2502.21236" class="publication-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> View Paper</a>
                 </div>
-                <div class="publication-item">
+                <div class="surface-card publication-item reveal">
+                    <span class="publication-venue-badge">ASIS&amp;T Workshop</span>
                     <div class="publication-title">AI for Global Health: Leveraging Large Language Models for Tuberculosis Treatment Adherence</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, M. Nizar, J. Roberti, D. Galdamez, H. Jakher, S. Iribarren, W. Yuwen, M. De Cock</div>
                     <div class="publication-venue">Workshop on Considering Cultural and Linguistic Diversity AI Applications, Association for Information Science and Technology</div>
                 </div>
-                <div class="publication-item">
+                <div class="surface-card publication-item reveal">
+                    <span class="publication-venue-badge">AMIA Symposium</span>
                     <div class="publication-title">Toward Large Language Models as a Therapeutic Tool: Comparing Prompting Techniques to Improve GPT-Delivered Problem-Solving Therapy</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, Y. Wang, C. El Jazmi, S. Xie, T. Cohen, M. De Cock, W. Yuwen</div>
                     <div class="publication-venue">American Medical Informatics Association (AMIA) Annual Symposium, 2024</div>
                     <a href="https://arxiv.org/pdf/2409.00112" class="publication-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> View Paper</a>
                 </div>
-                <div class="publication-item">
+                <div class="surface-card publication-item reveal">
+                    <span class="publication-venue-badge">ACM SIGKDD</span>
                     <div class="publication-title">Predicting Time to Pushback of Flights in U.S. Airports</div>
                     <div class="publication-authors"><strong>D. Filienko</strong>, Y. Lin, K. Robison, T. Tomlin, M. De Cock</div>
                     <div class="publication-venue">Undergraduate Consortium at 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD), 2023</div>
@@ -695,116 +1110,157 @@
             </div>
         </section>
 
-        <!-- Experience Section -->
+        <!-- Experience -->
         <section id="experience" class="alt-bg">
             <div class="container">
+                <div class="section-eyebrow">Career</div>
                 <h2 class="section-title">Professional Experience</h2>
+                <p class="section-intro">Industry and research roles across Microsoft, Zillow, the FDA, and the University of Washington.</p>
                 <div class="timeline">
-                    <div class="timeline-item left">
-                        <div class="timeline-content">
-                            <div class="date">Starting 7/2026</div>
+                    <div class="timeline-item left reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date current">Starting 7/2026</span>
                             <div class="role">Applied Scientist Intern</div>
                             <div class="company">Zillow</div>
                             <div class="description">
                                 <ul>
-                                    <li>Returning to the applied science team to continue work on agentic AI systems for real estate technology.</li>
+                                    <li>Joining Zillow's applied science organization to work on a new privacy-focused project.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Privacy</span>
+                                <span class="tag">Applied Science</span>
                             </div>
                         </div>
                     </div>
-                    <div class="timeline-item right">
-                        <div class="timeline-content">
-                            <div class="date">5/2026 – 7/2026</div>
+                    <div class="timeline-item right reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date current">5/2026 – 7/2026</span>
                             <div class="role">Applied Scientist Intern</div>
-                            <div class="company">Microsoft, MSAI Team</div>
+                            <div class="company">Microsoft · MSAI Team</div>
                             <div class="description">
                                 <ul>
                                     <li>Working on self-improving agentic systems and their evaluation.</li>
                                 </ul>
                             </div>
+                            <div class="tag-row">
+                                <span class="tag">Agentic Systems</span>
+                                <span class="tag">Evaluation</span>
+                                <span class="tag">Self-Improving AI</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="timeline-item left">
-                        <div class="timeline-content">
-                            <div class="date">9/2025 – 12/2025</div>
+                    <div class="timeline-item left reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date">9/2025 – 12/2025</span>
                             <div class="role">Research Intern</div>
                             <div class="company">Research Center Trustworthy Data Science and Security</div>
                             <div class="description">
                                 <ul>
-                                    <li>Working on Synthetic Data Generation using Differential Privacy and Large Language Models under the supervision of Dr. Habernal.</li>
+                                    <li>Worked on synthetic data generation using differential privacy and large language models under the supervision of Dr. Habernal.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Differential Privacy</span>
+                                <span class="tag">Synthetic Data</span>
+                                <span class="tag">LLMs</span>
                             </div>
                         </div>
                     </div>
-                    <div class="timeline-item right">
-                        <div class="timeline-content">
-                            <div class="date">6/2025 – 9/2025</div>
+                    <div class="timeline-item right reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date">6/2025 – 9/2025</span>
                             <div class="role">Applied Scientist Intern</div>
                             <div class="company">Zillow</div>
                             <div class="description">
                                 <ul>
-                                    <li>Working on agentic AI systems to enhance real estate technology and customer experience.</li>
+                                    <li>Worked on agentic AI systems to enhance real estate technology and customer experience.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Agentic AI</span>
+                                <span class="tag">Real Estate Tech</span>
                             </div>
                         </div>
                     </div>
-                    <div class="timeline-item left">
-                        <div class="timeline-content">
-                            <div class="date">3/2023 – Present</div>
+                    <div class="timeline-item left reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date current">3/2023 – Present</span>
                             <div class="role">Research Assistant</div>
                             <div class="company">University of Washington, Tacoma</div>
                             <div class="description">
                                 <p><strong>NIH AIM-AHEAD Research Fellowship on Acute Myeloid Leukemia subtyping</strong></p>
                                 <ul>
-                                    <li>Worked on improving scGPT model's ability to do cell subtype classification for genomics data and bulk seqRNA data for AML, focusing on improving performance across demographic groups, optimizing for fairness and accuracy.</li>
+                                    <li>Improved scGPT's cell subtype classification on genomics and bulk seqRNA data for AML, optimizing for fairness and accuracy across demographic groups.</li>
                                 </ul>
                                 <p><strong>LLM-assisted Tuberculosis Treatment Adherence Tool</strong></p>
                                 <ul>
-                                    <li>Led an interdisciplinary team in training a Large Language Model (LLM) to ensure the high model performance in multilingual settings while preserving the privacy of patient dialogues.</li>
+                                    <li>Led an interdisciplinary team training an LLM for high performance in multilingual settings while preserving the privacy of patient dialogues.</li>
                                 </ul>
                                 <p><strong>Caring For Caregivers Online</strong></p>
                                 <ul>
-                                    <li>Led an interdisciplinary team in training an LLM as a chatbot to deliver parts of Problem-Solving Therapy to assist family caregivers.</li>
+                                    <li>Led an interdisciplinary team training an LLM chatbot to deliver parts of Problem-Solving Therapy to assist family caregivers.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Healthcare AI</span>
+                                <span class="tag">LLMs</span>
+                                <span class="tag">Fairness</span>
+                                <span class="tag">Team Leadership</span>
                             </div>
                         </div>
                     </div>
-                    <div class="timeline-item right">
-                        <div class="timeline-content">
-                            <div class="date">4/2024 – 10/2024</div>
+                    <div class="timeline-item right reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date">4/2024 – 10/2024</span>
                             <div class="role">ORISE Fellow</div>
                             <div class="company">Food and Drug Administration, Washington D.C.</div>
                             <div class="description">
                                 <ul>
-                                    <li>Evaluated medical synthetic image generator by designing downstream segmentation and detection-based evaluation pipeline in PyTorch.</li>
+                                    <li>Evaluated a medical synthetic image generator by designing a downstream segmentation and detection-based evaluation pipeline in PyTorch.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Medical Imaging</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">Synthetic Data</span>
                             </div>
                         </div>
                     </div>
-                    <div class="timeline-item left">
-                        <div class="timeline-content">
-                            <div class="date">10/2023 – 10/2024</div>
+                    <div class="timeline-item left reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date">10/2023 – 10/2024</span>
                             <div class="role">Software Engineer</div>
                             <div class="company">University of Washington, Seattle</div>
                             <div class="description">
                                 <ul>
-                                    <li>Created FHIR-specific migration system package managing store updates.</li>
-                                    <li>Refactored predictive Language Model into a separate containerized service.</li>
+                                    <li>Created a FHIR-specific migration system package managing store updates.</li>
+                                    <li>Refactored a predictive language model into a separate containerized service.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">FHIR</span>
+                                <span class="tag">Docker</span>
+                                <span class="tag">Health Informatics</span>
                             </div>
                         </div>
                     </div>
-                    <div class="timeline-item right">
-                        <div class="timeline-content">
-                            <div class="date">2023</div>
+                    <div class="timeline-item right reveal">
+                        <div class="surface-card timeline-content">
+                            <span class="date">2023</span>
                             <div class="role">Undergraduate Research</div>
-                            <div class="company">Pushback to the Future Competition – Time Series Prediction</div>
+                            <div class="company">Pushback to the Future Competition · Time Series Prediction</div>
                             <div class="description">
                                 <ul>
-                                    <li>Won competition sponsored by NASA aimed at improving flight departure time prediction through tree-based ML models.</li>
-                                    <li>Designed a winning model with feature-engineering and supervised learning. Improved the accuracy over the presented baseline model by 50%.</li>
-                                    <li>Adapted it for the Federated Learning paradigm via PyTorch Flower Framework.</li>
+                                    <li>Won a NASA-sponsored competition aimed at improving flight departure time prediction with tree-based ML models.</li>
+                                    <li>Designed the winning model with feature engineering and supervised learning, improving accuracy over the baseline by 50%.</li>
+                                    <li>Adapted the model to the federated learning paradigm via the PyTorch Flower framework.</li>
                                 </ul>
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Time Series</span>
+                                <span class="tag">Federated Learning</span>
+                                <span class="tag">Competition Winner</span>
                             </div>
                         </div>
                     </div>
@@ -812,18 +1268,20 @@
             </div>
         </section>
 
-        <!-- Leadership Section -->
+        <!-- Leadership -->
         <section id="leadership">
             <div class="container">
+                <div class="section-eyebrow">Service</div>
                 <h2 class="section-title">Leadership</h2>
                 <div class="card-grid">
-                    <div class="card">
+                    <div class="surface-card card reveal">
                         <div class="card-header">
+                            <i class="fas fa-users" aria-hidden="true"></i>
                             <div class="card-title">Graduate Student Representative</div>
                         </div>
                         <div class="card-body">
                             <div class="company">University of Washington, Tacoma</div>
-                            <div class="date">11/2023 – Present</div>
+                            <span class="date">11/2023 – Present</span>
                             <div class="card-text">
                                 <ul>
                                     <li>Communicated with graduate CSS students to understand their questions and encapsulate the overall concerns for the CSS program.</li>
@@ -836,48 +1294,71 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Projects -->
         <section id="projects" class="alt-bg">
             <div class="container">
+                <div class="section-eyebrow">Selected Work</div>
                 <h2 class="section-title">Research Projects</h2>
                 <div class="card-grid">
-                    <div class="card">
+                    <div class="surface-card card reveal">
                         <div class="card-header">
+                            <i class="fas fa-stethoscope" aria-hidden="true"></i>
                             <div class="card-title">LLM-based Tuberculosis Treatment Assistant</div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Developing an AI-powered treatment assistant with human-in-the-loop design to improve tuberculosis treatment adherence and patient-clinician communication through multilingual support and privacy-preserving techniques.
+                                AI-powered treatment assistant with human-in-the-loop design to improve tuberculosis treatment adherence and patient-clinician communication through multilingual support and privacy-preserving techniques.
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">LLMs</span>
+                                <span class="tag">Global Health</span>
+                                <span class="tag">Privacy</span>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="surface-card card reveal">
                         <div class="card-header">
+                            <i class="fas fa-comments" aria-hidden="true"></i>
                             <div class="card-title">COCO: Chatbot for Mental Health Support</div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Assisted in developing full AWS architecture for a chatbot that provides mental health support with clinically proven methods. Led the LLM team responsible for the development of a robust and effective chatbot.
+                                Built full AWS architecture for a chatbot delivering mental health support with clinically proven methods, and led the LLM team responsible for developing a robust, effective chatbot.
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">AWS</span>
+                                <span class="tag">Mental Health</span>
+                                <span class="tag">LLMs</span>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="surface-card card reveal">
                         <div class="card-header">
-                            <div class="card-title">Attack for Membership Inference in Diffusion Models</div>
+                            <i class="fas fa-user-secret" aria-hidden="true"></i>
+                            <div class="card-title">Membership Inference Attacks in Diffusion Models</div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Researching attacks on Diffusion Models to understand and improve privacy vulnerabilities for the MIDST 2025 competition.
+                                Researching attacks on diffusion models to understand and improve privacy vulnerabilities for the MIDST 2025 competition.
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Diffusion Models</span>
+                                <span class="tag">Privacy Attacks</span>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="surface-card card reveal">
                         <div class="card-header">
+                            <i class="fas fa-plane-departure" aria-hidden="true"></i>
                             <div class="card-title">Federated Learning for Pushback Prediction</div>
                         </div>
                         <div class="card-body">
                             <div class="card-text">
-                                Implementing federated learning algorithms to predict flight pushback times for NASA's Pushback to the Future 2023 competition.
+                                Federated learning algorithms predicting flight pushback times for NASA's Pushback to the Future 2023 competition.
+                            </div>
+                            <div class="tag-row">
+                                <span class="tag">Federated Learning</span>
+                                <span class="tag">NASA</span>
                             </div>
                         </div>
                     </div>
@@ -889,34 +1370,42 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#education">Education</a>
-                    <a href="#publications">Publications</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#awards">Awards</a>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/Filienko" aria-label="GitHub profile"><i class="fab fa-github" aria-hidden="true"></i></a>
-                    <a href="https://www.linkedin.com/in/daniil-filienko-800160215" aria-label="LinkedIn profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                    <a href="mailto:daniilf@uw.edu" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                </div>
-                <div class="copyright">
-                    &copy; 2026 Daniil Filienko. All rights reserved.
-                </div>
+            <div class="footer-cta">
+                <h2>Let's Connect</h2>
+                <p>Open to research collaborations and conversations about privacy-preserving ML, LLMs, and agentic AI systems.</p>
+                <a href="mailto:daniilf@uw.edu" class="btn btn-accent"><i class="fas fa-envelope" aria-hidden="true"></i> daniilf@uw.edu</a>
+            </div>
+            <div class="footer-links">
+                <a href="#education">Education</a>
+                <a href="#awards">Awards</a>
+                <a href="#publications">Publications</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/Filienko" aria-label="GitHub profile" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/daniil-filienko-800160215" aria-label="LinkedIn profile" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a href="mailto:daniilf@uw.edu" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Daniil Filienko. All rights reserved.
             </div>
         </div>
     </footer>
 
+    <button class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
     <script>
-        // Highlight the nav link for the section currently in view
+        document.documentElement.classList.add('js');
+
+        // Scroll-spy: highlight nav link for the section in view
         (function () {
             const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
             const sections = Array.from(navLinks)
                 .map(link => document.querySelector(link.getAttribute('href')))
                 .filter(Boolean);
 
-            const observer = new IntersectionObserver(entries => {
+            const spy = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         navLinks.forEach(link => {
@@ -926,7 +1415,32 @@
                 });
             }, { rootMargin: '-40% 0px -55% 0px' });
 
-            sections.forEach(section => observer.observe(section));
+            sections.forEach(section => spy.observe(section));
+        })();
+
+        // Reveal-on-scroll
+        (function () {
+            const revealer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in');
+                        revealer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => revealer.observe(el));
+        })();
+
+        // Back-to-top button
+        (function () {
+            const btn = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', () => {
+                btn.classList.toggle('show', window.scrollY > 600);
+            }, { passive: true });
+            btn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         })();
     </script>
 </body>
